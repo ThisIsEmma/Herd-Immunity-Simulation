@@ -1,4 +1,5 @@
 import random
+from random import randint
 random.seed(42)
 from virus import Virus
 
@@ -14,9 +15,9 @@ class Person(object):
         should instantiate a Virus object and set it as the value
         self.infection. Otherwise, self.infection should be set to None.
         '''
-        self._id = None  # int
+        self._id = _id  # int
         self.is_alive = True  # boolean
-        self.is_vaccinated = None  # boolean
+        self.is_vaccinated = False  # boolean
         self.infection = None  # Virus object or None
 
     def did_survive_infection(self):
@@ -27,9 +28,12 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
-        pass
-
-
+        random_number = random.randint(0,100)
+        print(random_number)
+        if (random_number / 100 < 0.7):
+            return False
+        return True
+        
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 def test_vacc_person_instantiation():
     # create some people to test if our init method works as expected
