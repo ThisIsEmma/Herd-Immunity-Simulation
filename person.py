@@ -17,8 +17,8 @@ class Person(object):
         '''
         self._id = _id  # int
         self.is_alive = True  # boolean
-        self.is_vaccinated = False  # boolean
-        self.infection = None  # Virus object or None
+        self.is_vaccinated = is_vaccinated  # boolean
+        self.infection = infection  # Virus object or None
 
     def did_survive_infection(self):
         ''' Generate a random number and compare to virus's mortality_rate.
@@ -31,8 +31,14 @@ class Person(object):
         random_number = random.randint(0,100)
         print(random_number)
         if (random_number / 100 < 0.7):
+            self.is_alive = False 
+            self.is_vaccinated = True 
             return False
-        return True
+        elif (random_number / 100 > 0.7):
+            self.is_alive = True 
+            self.is_vaccinated = True 
+            self.infection = None
+            return True
         
 ''' These are simple tests to ensure that you are instantiating your Person class correctly. '''
 def test_vacc_person_instantiation():
@@ -49,7 +55,10 @@ def test_not_vacc_person_instantiation():
     # TODO: complete your own assert statements that test
     # the values at each attribute
     # assert ...
-    pass
+    assert person._id == 2
+    assert person.is_alive is True
+    assert person.is_vaccinated is False
+    assert person.infection is None
 
 
 def test_sick_person_instantiation():
@@ -60,7 +69,10 @@ def test_sick_person_instantiation():
     # TODO: complete your own assert statements that test
     # the values at each attribute
     # assert ...
-    pass
+    assert person._id == 3
+    assert person.is_alive is True
+    assert person.is_vaccinated is False
+    assert person.infection is virus
 
 
 def test_did_survive_infection():
@@ -72,14 +84,24 @@ def test_did_survive_infection():
     # Resolve whether the Person survives the infection or not
     survived = person.did_survive_infection()
     # Check if the Person survived or not
+    print(survived)
     if survived:
         assert person.is_alive is True
         # TODO: Write your own assert statements that test
         # the values of each attribute for a Person who survived
         # assert ...
+        assert person.is_vaccinated is True
+        assert person.infection is None 
     else:
         assert person.is_alive is False
         # TODO: Write your own assert statements that test
         # the values of each attribute for a Person who did not survive
         # assert ...
-        pass
+        assert person.is_vaccinated is True
+        assert person.infection is virus 
+
+# run tests 
+test_vacc_person_instantiation()
+test_not_vacc_person_instantiation()
+test_sick_person_instantiation()
+test_did_survive_infection()
