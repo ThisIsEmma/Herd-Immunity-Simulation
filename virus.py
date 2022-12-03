@@ -16,5 +16,6 @@ def test_virus_instantiation():
     assert virus.repro_rate == 0.5
     assert virus.mortality_rate == 0.7
 
-#run tests
-test_virus_instantiation()
+if __name__ == "__main__":
+    #run tests
+    test_virus_instantiation()

@@ -23,7 +23,19 @@ class Logger(object):
         # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        outfile = open(self.file_name, "w")
+        data = [
+            pop_size,
+            vacc_percentage,
+            virus_name,
+            mortality_rate,
+            basic_repro_num,
+        ]
+        for item in data:
+            outfile.writelines(str(item) + '\n')
+
+        outfile.close()
+        
 
     def log_interaction(self, person, random_person, random_person_sick=None,
                         random_person_vacc=None, did_infect=None):
@@ -40,7 +52,18 @@ class Logger(object):
         # represent all the possible edge cases. Use the values passed along with each person,
         # along with whether they are sick or vaccinated when they interact to determine
         # exactly what happened in the interaction and create a String, and write to your logfile.
-        pass
+        outfile = open(self.file_name, "a")
+        if (not random_person_sick and not random_person_vacc and did_infect):
+            outfile.writelines(f"{person._id} infects {random_person._id} \n")
+        elif (not random_person_sick and random_person_vacc and not did_infect):
+            outfile.writelines(f"{person._id} didn't infect {random_person._id} because vaccinated \n")
+    # elif (random_person_sick and not random_person_vacc and not did_infect):
+    #       outfile.writelines(f"{person._id} didn't infect {random_person._id} because already sick \n")
+        #log other edge cases that might have been missed
+        else:
+            outfile.write(f"Edge case uncaught: random person id {random_person._id}, sick? {random_person_sick} vacc? {random_person_vacc} infect? {did_infect} \n")
+        
+        outfile.close()
 
     def log_infection_survival(self, person, did_die_from_infection):
         ''' The Simulation object uses this method to log the results of every
@@ -52,7 +75,13 @@ class Logger(object):
         # TODO: Finish this method. If the person survives, did_die_from_infection
         # should be False.  Otherwise, did_die_from_infection should be True.
         # Append the results of the infection to the logfile
-        pass
+        outfile = open(self.file_name, "a")
+        if(did_die_from_infection):
+            outfile.write(f"{person._id} died from infection\n")
+        elif(not did_die_from_infection):
+            outfile.write(f"{person._id} survived infection.\n")
+        
+        outfile.close()
 
     def log_time_step(self, time_step_number):
         ''' STRETCH CHALLENGE DETAILS:

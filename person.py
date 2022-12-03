@@ -20,7 +20,7 @@ class Person(object):
         self.is_vaccinated = is_vaccinated  # boolean
         self.infection = infection  # Virus object or None
 
-    def did_survive_infection(self):
+    def did_survive_infection(self, virus):
         ''' Generate a random number and compare to virus's mortality_rate.
         If random number is smaller, person dies from the disease.
         If Person survives, they become vaccinated and they have no infection.
@@ -28,13 +28,13 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
-        random_number = random.randint(0,100)
-        print(random_number)
-        if (random_number / 100 < 0.7):
+        random_number = random.randint(0,100)/100
+        print('random number =>', random_number)
+        if (random_number  < virus.repro_rate):
             self.is_alive = False 
             self.is_vaccinated = True 
             return False
-        elif (random_number / 100 > 0.7):
+        elif (random_number > virus.repro_rate):
             self.is_alive = True 
             self.is_vaccinated = True 
             self.infection = None
@@ -82,7 +82,7 @@ def test_did_survive_infection():
     person = Person(4, False, virus)
 
     # Resolve whether the Person survives the infection or not
-    survived = person.did_survive_infection()
+    survived = person.did_survive_infection(virus)
     # Check if the Person survived or not
     print(survived)
     if survived:
@@ -100,8 +100,9 @@ def test_did_survive_infection():
         assert person.is_vaccinated is True
         assert person.infection is virus 
 
-# run tests 
-test_vacc_person_instantiation()
-test_not_vacc_person_instantiation()
-test_sick_person_instantiation()
-test_did_survive_infection()
+if __name__ == "__main__":
+    # run tests 
+    test_vacc_person_instantiation()
+    test_not_vacc_person_instantiation()
+    test_sick_person_instantiation()
+    test_did_survive_infection()

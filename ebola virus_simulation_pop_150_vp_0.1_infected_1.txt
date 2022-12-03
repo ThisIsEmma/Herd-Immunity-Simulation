@@ -1,0 +1,332 @@
+15 didn't infect 0 because vaccinated 
+15 didn't infect 1 because vaccinated 
+15 didn't infect 2 because vaccinated 
+15 didn't infect 3 because vaccinated 
+15 didn't infect 4 because vaccinated 
+15 didn't infect 5 because vaccinated 
+15 didn't infect 6 because vaccinated 
+15 didn't infect 7 because vaccinated 
+15 didn't infect 8 because vaccinated 
+15 didn't infect 9 because vaccinated 
+15 didn't infect 10 because vaccinated 
+15 didn't infect 11 because vaccinated 
+15 didn't infect 12 because vaccinated 
+15 didn't infect 13 because vaccinated 
+15 didn't infect 14 because vaccinated 
+15 infects 16 
+16 survived infection.
+15 infects 17 
+17 died from infection
+15 infects 18 
+18 died from infection
+15 infects 19 
+19 survived infection.
+15 infects 20 
+20 died from infection
+15 infects 21 
+21 died from infection
+15 infects 22 
+22 died from infection
+15 infects 23 
+23 died from infection
+15 infects 24 
+24 survived infection.
+15 infects 25 
+25 died from infection
+15 infects 26 
+26 survived infection.
+15 infects 27 
+27 survived infection.
+15 infects 28 
+28 survived infection.
+15 infects 29 
+29 died from infection
+15 infects 30 
+30 survived infection.
+15 infects 31 
+31 died from infection
+15 infects 32 
+32 died from infection
+15 infects 33 
+33 died from infection
+15 infects 34 
+34 died from infection
+15 infects 35 
+35 died from infection
+15 infects 36 
+36 died from infection
+15 infects 37 
+37 survived infection.
+15 infects 38 
+38 survived infection.
+15 infects 39 
+39 died from infection
+15 infects 40 
+40 survived infection.
+15 infects 41 
+41 died from infection
+15 infects 42 
+42 survived infection.
+15 infects 43 
+43 survived infection.
+15 infects 44 
+44 survived infection.
+15 infects 45 
+45 survived infection.
+15 infects 46 
+46 died from infection
+15 infects 47 
+47 died from infection
+15 infects 48 
+48 died from infection
+15 infects 49 
+49 survived infection.
+15 infects 50 
+50 died from infection
+15 infects 51 
+51 died from infection
+15 infects 52 
+52 survived infection.
+15 infects 53 
+53 died from infection
+15 infects 54 
+54 survived infection.
+15 infects 55 
+55 died from infection
+15 infects 56 
+56 died from infection
+15 infects 57 
+57 died from infection
+15 infects 58 
+58 died from infection
+15 infects 59 
+59 died from infection
+15 infects 60 
+60 survived infection.
+15 infects 61 
+61 died from infection
+15 infects 62 
+62 died from infection
+15 infects 63 
+63 died from infection
+15 infects 64 
+64 died from infection
+15 infects 65 
+65 died from infection
+15 infects 66 
+66 died from infection
+15 infects 67 
+67 died from infection
+15 infects 68 
+68 survived infection.
+15 infects 69 
+69 died from infection
+15 infects 70 
+70 died from infection
+15 infects 71 
+71 survived infection.
+15 infects 72 
+72 died from infection
+15 infects 73 
+73 survived infection.
+15 infects 74 
+74 died from infection
+15 infects 75 
+75 died from infection
+15 infects 76 
+76 died from infection
+15 infects 77 
+77 survived infection.
+15 infects 78 
+78 died from infection
+15 infects 79 
+79 survived infection.
+15 infects 80 
+80 survived infection.
+15 infects 81 
+81 died from infection
+15 infects 82 
+82 survived infection.
+15 infects 83 
+83 died from infection
+15 infects 84 
+84 survived infection.
+15 infects 85 
+85 died from infection
+15 infects 86 
+86 died from infection
+15 infects 87 
+87 survived infection.
+15 infects 88 
+88 died from infection
+15 infects 89 
+89 survived infection.
+15 infects 90 
+90 died from infection
+15 infects 91 
+91 died from infection
+15 infects 92 
+92 died from infection
+15 infects 93 
+93 died from infection
+15 infects 94 
+94 died from infection
+15 infects 95 
+95 died from infection
+15 infects 96 
+96 died from infection
+15 infects 97 
+97 survived infection.
+15 infects 98 
+98 died from infection
+15 infects 99 
+99 died from infection
+15 didn't infect 0 because vaccinated 
+15 didn't infect 1 because vaccinated 
+15 didn't infect 2 because vaccinated 
+15 didn't infect 3 because vaccinated 
+15 didn't infect 4 because vaccinated 
+15 didn't infect 5 because vaccinated 
+15 didn't infect 6 because vaccinated 
+15 didn't infect 7 because vaccinated 
+15 didn't infect 8 because vaccinated 
+15 didn't infect 9 because vaccinated 
+15 didn't infect 10 because vaccinated 
+15 didn't infect 11 because vaccinated 
+15 didn't infect 12 because vaccinated 
+15 didn't infect 13 because vaccinated 
+15 didn't infect 14 because vaccinated 
+15 didn't infect 16 because vaccinated 
+15 didn't infect 19 because vaccinated 
+15 didn't infect 24 because vaccinated 
+15 didn't infect 26 because vaccinated 
+15 didn't infect 27 because vaccinated 
+15 didn't infect 28 because vaccinated 
+15 didn't infect 30 because vaccinated 
+15 didn't infect 37 because vaccinated 
+15 didn't infect 38 because vaccinated 
+15 didn't infect 40 because vaccinated 
+15 didn't infect 42 because vaccinated 
+15 didn't infect 43 because vaccinated 
+15 didn't infect 44 because vaccinated 
+15 didn't infect 45 because vaccinated 
+15 didn't infect 49 because vaccinated 
+15 didn't infect 52 because vaccinated 
+15 didn't infect 54 because vaccinated 
+15 didn't infect 60 because vaccinated 
+15 didn't infect 68 because vaccinated 
+15 didn't infect 71 because vaccinated 
+15 didn't infect 73 because vaccinated 
+15 didn't infect 77 because vaccinated 
+15 didn't infect 79 because vaccinated 
+15 didn't infect 80 because vaccinated 
+15 didn't infect 82 because vaccinated 
+15 didn't infect 84 because vaccinated 
+15 didn't infect 87 because vaccinated 
+15 didn't infect 89 because vaccinated 
+15 didn't infect 97 because vaccinated 
+15 infects 100 
+100 died from infection
+15 infects 101 
+101 died from infection
+15 infects 102 
+102 died from infection
+15 infects 103 
+103 survived infection.
+15 infects 104 
+104 died from infection
+15 infects 105 
+105 survived infection.
+15 infects 106 
+106 survived infection.
+15 infects 107 
+107 survived infection.
+15 infects 108 
+108 died from infection
+15 infects 109 
+109 survived infection.
+15 infects 110 
+110 survived infection.
+15 infects 111 
+111 died from infection
+15 infects 112 
+112 survived infection.
+15 infects 113 
+113 survived infection.
+15 infects 114 
+114 died from infection
+15 infects 115 
+115 died from infection
+15 infects 116 
+116 died from infection
+15 infects 117 
+117 died from infection
+15 infects 118 
+118 died from infection
+15 infects 119 
+119 survived infection.
+15 infects 120 
+120 survived infection.
+15 infects 121 
+121 survived infection.
+15 infects 122 
+122 died from infection
+15 infects 123 
+123 survived infection.
+15 infects 124 
+124 died from infection
+15 infects 125 
+125 survived infection.
+15 infects 126 
+126 survived infection.
+15 infects 127 
+127 died from infection
+15 infects 128 
+128 died from infection
+15 infects 129 
+129 died from infection
+15 infects 130 
+130 died from infection
+15 infects 131 
+131 died from infection
+15 infects 132 
+132 died from infection
+15 infects 133 
+133 died from infection
+15 infects 134 
+134 died from infection
+15 infects 135 
+135 survived infection.
+15 infects 136 
+136 survived infection.
+15 infects 137 
+137 died from infection
+15 infects 138 
+138 died from infection
+15 infects 139 
+139 survived infection.
+15 infects 140 
+140 survived infection.
+15 infects 141 
+141 died from infection
+15 infects 142 
+142 survived infection.
+15 infects 143 
+143 died from infection
+15 infects 144 
+144 died from infection
+15 infects 145 
+145 died from infection
+15 infects 146 
+146 died from infection
+15 infects 147 
+147 died from infection
+15 infects 148 
+148 survived infection.
+15 infects 149 
+149 survived infection.
+15 didn't infect 0 because vaccinated 
+15 didn't infect 1 because vaccinated 
+15 didn't infect 2 because vaccinated 
+15 didn't infect 3 because vaccinated 
+15 didn't infect 4 because vaccinated 
