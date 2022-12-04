@@ -83,9 +83,8 @@ class Logger(object):
         
         outfile.close()
 
-    def log_time_step(self, time_step_number):
+    def log_time_step(self, time_step_number, new_death, total_dead, current_infected, total_infected):
         ''' STRETCH CHALLENGE DETAILS:
-
         If you choose to extend this method, the format of the summary statistics logged
         are up to you.
 
@@ -101,4 +100,8 @@ class Logger(object):
         # TODO: Finish this method. This method should log when a time step ends, and a
         # new one begins.
         # NOTE: Here is an opportunity for a stretch challenge!
-        pass
+        
+        outfile = open(self.file_name, "a")
+        outfile.write(f'New infections (including infections resulting in deaths): {current_infected} \nTotal infection in population (including initialy infected, if applicable): {total_infected} \nNew deaths: {new_death} \nTotal deaths: {total_dead} \nTime step {time_step_number} ended, beginning {time_step_number + 1}... \n')
+        outfile.close()
+        

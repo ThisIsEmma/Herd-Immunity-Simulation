@@ -29,7 +29,6 @@ class Person(object):
         # Only called if infection attribute is not None.
         # TODO:  Finish this method. Should return a Boolean
         random_number = random.randint(0,100)/100
-        print('random number =>', random_number)
         if (random_number  < virus.repro_rate):
             self.is_alive = False 
             self.is_vaccinated = True 
