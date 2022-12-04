@@ -5,8 +5,6 @@ from logger import Logger
 from virus import Virus
 from math import floor
 
-
-
 class Simulation(object):
     ''' Main class that will run the herd immunity simulation program.
     Expects initialization parameters passed as command line arguments when file is run.
@@ -31,15 +29,6 @@ class Simulation(object):
         All arguments will be passed as command-line arguments when the file is run.
         HINT: Look in the if __name__ == "__main__" function at the bottom.
         '''
-        # TODO: Create a Logger object and bind it to self.logger.
-        # Remember to call the appropriate logger method in the corresponding parts of the simulation.
-        # TODO: Call self._create_population() and pass in the correct parameters.
-        # Store the array that this method will return in the self.population attribute.
-        # TODO: Store each newly infected person's ID in newly_infected attribute.
-        # At the end of each time step, call self._infect_newly_infected()
-        # and then reset .newly_infected back to an empty list.
-        
-        
         self.pop_size = pop_size # Int
         self.next_person_id = 0 # Int
         self.virus = virus # Virus object
@@ -64,17 +53,7 @@ class Simulation(object):
 
             Returns:
                 list: A list of Person objects.
-
         '''
-        # TODO: Finish this method!  This method should be called when the simulation
-        # begins, to create the population that will be used. This method should return
-        # an array filled with Person objects that matches the specifications of the
-        # simulation (correct number of people in the population, correct percentage of
-        # people vaccinated, correct number of initially infected people).
-
-        # Use the attributes created in the init method to create a population that has
-        # the correct intial vaccination percentage and initial infected.
-
         #create population
         initial_population_arr = []
         for i in range (int(self.pop_size)):
@@ -94,11 +73,9 @@ class Simulation(object):
     def _simulation_should_continue(self):
         ''' The simulation should only end if the entire population is dead
         or everyone is vaccinated.
-
             Returns:
                 bool: True for simulation should continue, False if it should end.
         '''
-        # TODO: Complete this helper method.  Returns a Boolean.
         for person in self.population:
             if person.is_alive and not person.is_vaccinated and not person.infection:
                 return True
@@ -108,19 +85,10 @@ class Simulation(object):
         ''' This method should run the simulation until all requirements for ending
         the simulation are met.
         '''
-        # TODO: Finish this method.  To simplify the logic here, use the helper method
-        # _simulation_should_continue() to tell us whether or not we should continue
-        # the simulation and run at least 1 more time_step.
-
-        # TODO: Keep track of the number of time steps that have passed.
-        # HINT: You may want to call the logger's log_time_step() method at the end of each time step.
-        # TODO: Set this variable using a helper
         time_step_counter = 0
         should_continue = True
 
         while should_continue:
-        # TODO: for every iteration of this loop, call self.time_step() to compute another
-        # round of this simulation.
             self.time_step()
             time_step_counter += 1
             should_continue = self._simulation_should_continue()
@@ -174,19 +142,6 @@ class Simulation(object):
         # in as params
         assert person.is_alive == True
         assert random_person.is_alive == True
-
-        # TODO: Finish this method.
-        #  The possible cases you'll need to cover are listed below:
-            # random_person is vaccinated:
-            #     nothing happens to random person.
-            # random_person is already infected:
-            #     nothing happens to random person.
-            # random_person is healthy, but unvaccinated:
-            #     generate a random number between 0 and 1.  If that number is smaller
-            #     than repro_rate, random_person's ID should be appended to
-            #     Simulation object's newly_infected array, so that their .infected
-            #     attribute can be changed to True at the end of the time step.
-        # TODO: Call slogger method during this method.
         #case where random_person is unvaccinated and uninfected
         if (not random_person.is_vaccinated and not random_person.infection):
                     survival = random_person.did_survive_infection(self.virus)
@@ -212,10 +167,6 @@ class Simulation(object):
     def _infect_newly_infected(self):
         ''' This method should iterate through the list of ._id stored in self.newly_infected
         and update each Person object with the disease. '''
-        # TODO: Call this method at the end of every time step and infect each Person.
-        # TODO: Once you have iterated through the entire list of self.newly_infected, remember
-        # to reset self.newly_infected back to an empty list.
-        # storing newly infected current and total in variable for stats 
         self.current_infected = len(self.newly_infected)
         self.total_infected += self.current_infected
 
@@ -246,13 +197,6 @@ if __name__ == "__main__":
 
     sim.run()
 
-
-'''
-# TO BE DELETED ! - My own test
-ebola = Virus('ebola virus',0.6, 0.90)
-trial = Simulation(150,0.2,1,virus = ebola)
-print('should sim continue? ', trial._simulation_should_continue())
-
-trial.run()
-
-'''
+    # 🔊 ❗️  Run simulation by entering 'python3 simulation.py ebola 0.25 0.70 100000 0.90 10' in terminal, 
+    # as opposed to 'python3 simulation.py 100000 0.90 Ebola 0.70 0.25 10' (as stated in repo) because the params order
+    # in the code is not the same. 

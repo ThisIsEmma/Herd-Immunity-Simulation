@@ -7,8 +7,6 @@ class Logger(object):
     # test them one by one as you write your class.
 
     def __init__(self, file_name):
-        # TODO:  Finish this initialization method. The file_name passed should be the
-        # full file name of the file that the logs will be written to.
         self.file_name = file_name
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
@@ -17,12 +15,6 @@ class Logger(object):
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
-        # TODO: Finish this method. This line of metadata should be tab-delimited
-        # it should create the text file that we will store all logs in.
-        # TIP: Use 'w' mode when you open the file. For all other methods, use
-        # the 'a' mode to append a new log to the end, since 'w' overwrites the file.
-        # NOTE: Make sure to end every line with a '/n' character to ensure that each
-        # event logged ends up on a separate line!
         outfile = open(self.file_name, "w")
         data = [
             pop_size,
@@ -48,17 +40,11 @@ class Logger(object):
         or the other edge cases:
             "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
         '''
-        # TODO: Finish this method. Think about how the booleans passed (or not passed)
-        # represent all the possible edge cases. Use the values passed along with each person,
-        # along with whether they are sick or vaccinated when they interact to determine
-        # exactly what happened in the interaction and create a String, and write to your logfile.
         outfile = open(self.file_name, "a")
         if (not random_person_sick and not random_person_vacc and did_infect):
             outfile.writelines(f"{person._id} infects {random_person._id} \n")
         elif (not random_person_sick and random_person_vacc and not did_infect):
             outfile.writelines(f"{person._id} didn't infect {random_person._id} because vaccinated \n")
-    # elif (random_person_sick and not random_person_vacc and not did_infect):
-    #       outfile.writelines(f"{person._id} didn't infect {random_person._id} because already sick \n")
         #log other edge cases that might have been missed
         else:
             outfile.write(f"Edge case uncaught: random person id {random_person._id}, sick? {random_person_sick} vacc? {random_person_vacc} infect? {did_infect} \n")
@@ -72,9 +58,6 @@ class Logger(object):
         The format of the log should be:
             "{person.ID} died from infection\n" or "{person.ID} survived infection.\n"
         '''
-        # TODO: Finish this method. If the person survives, did_die_from_infection
-        # should be False.  Otherwise, did_die_from_infection should be True.
-        # Append the results of the infection to the logfile
         outfile = open(self.file_name, "a")
         if(did_die_from_infection):
             outfile.write(f"{person._id} died from infection\n")
@@ -97,10 +80,6 @@ class Logger(object):
         The format of this log should be:
             "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
         '''
-        # TODO: Finish this method. This method should log when a time step ends, and a
-        # new one begins.
-        # NOTE: Here is an opportunity for a stretch challenge!
-        
         outfile = open(self.file_name, "a")
         outfile.write(f'New infections (including infections resulting in deaths): {current_infected} \nTotal infection in population (including initialy infected, if applicable): {total_infected} \nNew deaths: {new_death} \nTotal deaths: {total_dead} \nTime step {time_step_number} ended, beginning {time_step_number + 1}... \n')
         outfile.close()
