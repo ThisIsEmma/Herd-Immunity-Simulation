@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
     # TODO: Write a test suite for this class to make sure each method is working
@@ -10,21 +13,25 @@ class Logger(object):
         self.file_name = file_name
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
-                       basic_repro_num):
+                       basic_repro_num, initial_infected):
         '''
         The simulation class should use this method immediately to log the specific
         parameters of the simulation as the first line of the file.
         '''
         outfile = open(self.file_name, "w")
         data = [
-            pop_size,
-            vacc_percentage,
-            virus_name,
-            mortality_rate,
-            basic_repro_num,
+            {'population size' : pop_size},
+            {'initial infected': initial_infected},
+            {'Vaccinated percentage' : vacc_percentage},
+            {'Virus name' : virus_name},
+            {'Virus Mortality rate' : mortality_rate},
+            {'Virus Repro rate' : basic_repro_num},
+            {'date': datetime.now()}
         ]
         for item in data:
-            outfile.writelines(str(item) + '\n')
+            for key, value in item.items():
+                outfile.writelines(str(key) + ': ')   
+                outfile.writelines(str(value) + '\n')
 
         outfile.close()
         
@@ -66,7 +73,7 @@ class Logger(object):
         
         outfile.close()
 
-    def log_time_step(self, time_step_number, new_death, total_dead, current_infected, total_infected):
+    def log_time_step(self, time_step_number, new_death, total_dead, current_infected, total_infected, pop_size, total_vaccinated):
         ''' STRETCH CHALLENGE DETAILS:
         If you choose to extend this method, the format of the summary statistics logged
         are up to you.
@@ -81,6 +88,53 @@ class Logger(object):
             "Time step {time_step_number} ended, beginning {time_step_number + 1}\n"
         '''
         outfile = open(self.file_name, "a")
-        outfile.write(f'New infections (including infections resulting in deaths): {current_infected} \nTotal infection in population (including initialy infected, if applicable): {total_infected} \nNew deaths: {new_death} \nTotal deaths: {total_dead} \nTime step {time_step_number} ended, beginning {time_step_number + 1}... \n')
+        outfile.write(
+        f'''
+            New infections (including infections resulting in deaths): {current_infected} \n 
+            Total infection in population (including initialy infected, if applicable): {total_infected} \n
+            New deaths: {new_death} \n
+            Total deaths: {total_dead} \n
+            POPULATION STATS \n
+            Number of living: {pop_size - total_dead}\n
+            Total number of vaccinated: {total_vaccinated}** \n
+            ** We opted not to test mortality of initially, per FAQ question-2 answer.)\n
+            Time step {time_step_number} ended, beginning {time_step_number + 1}... \n
+        '''
+            )
         outfile.close()
-        
+
+    #helper function to end log file:
+    def log_simulation_end(self, initial_infected, time_step_number, total_dead, initial_vaccinated, total_infected, pop_size, total_vaccinated):
+        '''This method is called to log end of simulation data.
+
+        Args:
+            person1 (person): The initial infected person
+            random_person (person): The person that person1 interacts with.
+
+
+
+        '''
+        outfile = open(self.file_name, "a")
+        outfile.write(
+        f'''
+            ---------------------------------END OF SIMULATION---------------------------------
+            Simulation ended because all members of the population (except for initialy infected**) are either vaccinated or dead\n 
+            {time_step_number * 100} interactions happened in the simulation.
+            RESULTS:\n
+            Initial infected: {initial_infected}\n
+            Total deaths: {total_dead} \n
+            Total living (incl. initial infected): {pop_size - total_dead} \n
+            Total persons that have been infected (excl. initialy infected): {total_infected} \n
+            Total number of vaccinated and alive (incl. survivors and initially vaccinated): {total_vaccinated}** \n
+            Number of interactions resulting in vaccination and survival: {total_vaccinated - initial_vaccinated}\n
+            Number of interactions resulting in death: {total_dead}\n
+            ** We opted not to test mortality of initially, per FAQ question-2 answer.)\n
+            ------------------------------------------------------------------------------------
+        '''
+            )
+        outfile.close()
+
+if __name__ == "__main__":
+    #Use for testing      
+    log_test = Logger('example.txt')
+    log_test.write_metadata(1000, 0.20, 'Ebola', 0.2, 0.3, 10)

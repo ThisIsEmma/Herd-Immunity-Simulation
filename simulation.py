@@ -33,7 +33,7 @@ class Simulation(object):
         self.next_person_id = 0 # Int
         self.virus = virus # Virus object
         self.initial_infected = initial_infected # Int
-        self.total_infected =  initial_infected # Int - Previously 0 but changed to initial infected to account for all infected
+        self.total_infected =  0 # Int
         self.current_infected = 0 # Int
         self.vacc_percentage = vacc_percentage # float between 0 and 1
         self.total_dead = 0 # Int
@@ -85,17 +85,31 @@ class Simulation(object):
         ''' This method should run the simulation until all requirements for ending
         the simulation are met.
         '''
+        # TO DELETE! THIS WAS JUST FOR TESTING !
+        print('BEGINING OF SIM')
+        for people in self.population:
+            print(f'Person id {people._id} - Alive: {people.is_alive} Infected: {people.infection} Vaccinated: {people.is_vaccinated}.')
+        # Call the the logger method ( write_metadata  to display introduction):
+        self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate, self.initial_infected)
+
         time_step_counter = 0
         should_continue = True
+        initial_vaccinated = self.pop_size * self.vacc_percentage
 
         while should_continue:
             self.time_step()
             time_step_counter += 1
             should_continue = self._simulation_should_continue()
-            self.logger.log_time_step(time_step_counter, self.new_death, self.total_dead, self.current_infected, self.total_infected)
+            total_vaccinated = self.get_total_vaccinated()
+            self.logger.log_time_step(time_step_counter, self.new_death, self.total_dead, self.current_infected, self.total_infected, self.pop_size, total_vaccinated)
             self.new_death = 0
 
+        total_vaccinated = self.get_total_vaccinated()
+        print('Total_vaccinated - end of sim', total_vaccinated)
+        self.logger.log_simulation_end(self.initial_infected, time_step_counter, self.total_dead, initial_vaccinated, self.total_infected, self.pop_size, total_vaccinated)
         print(f'The simulation has ended after {time_step_counter} turns.')
+       
+        # TO DELETE! THIS WAS JUST FOR TESTING !
         for people in self.population:
             print(f'Person id {people._id} - Alive: {people.is_alive} Infected: {people.infection} Vaccinated: {people.is_vaccinated}.')
 
@@ -155,6 +169,7 @@ class Simulation(object):
                         self.total_dead += 1
                     elif(survival):
                         # random number greater than repro rate: they survive!
+                        self.total_infected += 1 # For statistics purpose as self.total_inflected reflected all the persons that have been contaminated
                         self.logger.log_interaction(person, random_person, random_person_sick=False,
                         random_person_vacc=False, did_infect=True)
                         self.logger.log_infection_survival(random_person, did_die_from_infection = False) 
@@ -176,9 +191,27 @@ class Simulation(object):
                     people.infection = self.virus
         self.newly_infected.clear()
 
+    # Helper function to compute the total vaccinated people at any time of the simulation 
+    def get_total_vaccinated(self):
+        '''This method is called to calculate the total amount of vaccinated in the population
+
+            Args:
+                none
+            return integer representing total number of vaccinated persons
+        '''
+        vaccinated_person = 0
+        if  self.population:
+            for person in self.population:
+                if person.is_vaccinated and person.is_alive:
+                    vaccinated_person += 1
+            return vaccinated_person
+        else:
+            print('no population found.')
+
 
 if __name__ == "__main__":
 
+    '''
     params = sys.argv[1:]
     virus_name = str(params[0])
     repro_num = float(params[1])
@@ -200,3 +233,9 @@ if __name__ == "__main__":
     # 🔊 ❗️  Run simulation by entering 'python3 simulation.py ebola 0.25 0.70 100000 0.90 10' in terminal, 
     # as opposed to 'python3 simulation.py 100000 0.90 Ebola 0.70 0.25 10' (as stated in repo) because the params order
     # in the code is not the same. 
+    '''
+
+flu = Virus('Flu', 0.6, 0.8)
+test_sim = Simulation(10, 0.1, initial_infected=2, virus = flu)
+# print(test_sim.get_total_vaccinated())
+test_sim.run()
