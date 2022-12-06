@@ -57,9 +57,7 @@ def test_not_vacc_person_instantiation():
 
 
 def test_sick_person_instantiation():
-    # Create a Virus object to give a Person object an infection
     virus = Virus("Dysentery", 0.7, 0.2)
-    # Create a Person object and give them the virus infection
     person = Person(3, False, virus)
     assert person._id == 3
     assert person.is_alive is True

@@ -85,11 +85,6 @@ class Simulation(object):
         ''' This method should run the simulation until all requirements for ending
         the simulation are met.
         '''
-        # TO DELETE! THIS WAS JUST FOR TESTING !
-        print('BEGINING OF SIM')
-        # for people in self.population:
-        #   print(f'Person id {people._id} - Alive: {people.is_alive} Infected: {people.infection} Vaccinated: {people.is_vaccinated}.')
-        # Call the the logger method ( write_metadata  to display introduction):
         self.logger.write_metadata(self.pop_size, self.vacc_percentage, self.virus.name, self.virus.mortality_rate, self.virus.repro_rate, self.initial_infected)
 
         time_step_counter = 0
@@ -105,13 +100,8 @@ class Simulation(object):
             self.new_death = 0
 
         total_vaccinated = self.get_total_vaccinated()
-        print('Total_vaccinated - end of sim', total_vaccinated)
         self.logger.log_simulation_end(self.initial_infected, time_step_counter, self.total_dead, initial_vaccinated, self.total_infected, self.pop_size, total_vaccinated)
         print(f'The simulation has ended after {time_step_counter} turns.')
-       
-        # TO DELETE! THIS WAS JUST FOR TESTING !
-        # for people in self.population:
-        #   print(f'Person id {people._id} - Alive: {people.is_alive} Infected: {people.infection} Vaccinated: {people.is_vaccinated}.')
 
     def time_step(self):
         ''' This method should contain all the logic for computing one time step

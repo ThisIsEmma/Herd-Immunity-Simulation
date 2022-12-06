@@ -3,12 +3,6 @@ from datetime import datetime
 
 class Logger(object):
     ''' Utility class responsible for logging all interactions during the simulation. '''
-    # TODO: Write a test suite for this class to make sure each method is working
-    # as expected.
-
-    # PROTIP: Write your tests before you solve each function, that way you can
-    # test them one by one as you write your class.
-
     def __init__(self, file_name):
         self.file_name = file_name
 
