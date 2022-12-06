@@ -28,11 +28,11 @@ class Person(object):
         '''
         # Only called if infection attribute is not None.
         random_number = random.randint(0,100)/100
-        if (random_number < virus.repro_rate):
+        if (random_number < virus.mortality_rate):
             self.is_alive = False 
             self.is_vaccinated = True 
             return False
-        elif (random_number > virus.repro_rate):
+        elif (random_number > virus.mortality_rate):
             self.is_alive = True 
             self.is_vaccinated = True 
             self.infection = None
@@ -70,11 +70,8 @@ def test_sick_person_instantiation():
 def test_did_survive_infection():
     virus = Virus("Dysentery", 0.7, 0.2)
     person = Person(4, False, virus)
-
     # Resolve whether the Person survives the infection or not
     survived = person.did_survive_infection(virus)
-    # Check if the Person survived or not
-    print(survived)
     if survived:
         assert person.is_alive is True
         assert person.is_vaccinated is True
@@ -84,9 +81,30 @@ def test_did_survive_infection():
         assert person.is_vaccinated is True
         assert person.infection is virus 
 
+# Per project completion requirement - 3 additional tests for person.py
+
+def test_new_instance_is_virus_free():
+    person = Person(4, False)
+    assert person.infection == None
+
+def test_infection_is_virus_object():
+    virus = Virus("Dysentery", 0.7, 0.2)
+    person = Person(4, False, virus)
+    assert type(person.infection) == Virus
+
+def test_person_attributes_type():
+    virus = Virus("Dysentery", 0.7, 0.2)
+    person = Person(1, True, virus)
+    assert type(person._id) == int
+    assert type(person.is_alive) == bool
+    assert type(person.is_vaccinated) == bool
+    assert type(person.infection) == Virus
+
 if __name__ == "__main__":
     # run tests 
     test_vacc_person_instantiation()
     test_not_vacc_person_instantiation()
     test_sick_person_instantiation()
     test_did_survive_infection()
+    test_new_instance_is_virus_free()
+    test_person_attributes_type()

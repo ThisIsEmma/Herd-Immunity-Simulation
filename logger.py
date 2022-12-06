@@ -34,6 +34,7 @@ class Logger(object):
                 outfile.writelines(str(value) + '\n')
 
         outfile.close()
+        return data
         
 
     def log_interaction(self, person, random_person, random_person_sick=None,
@@ -45,16 +46,14 @@ class Logger(object):
         The format of the log should be: "{person.ID} infects {random_person.ID} \n"
 
         or the other edge cases:
-            "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'} \n"
+            "{person.ID} didn't infect {random_person.ID} because {'vaccinated' or 'already sick'}\n"
         '''
         outfile = open(self.file_name, "a")
         if (not random_person_sick and not random_person_vacc and did_infect):
-            outfile.writelines(f"{person._id} infects {random_person._id} \n")
+            #outfile.writelines(f'{person._id} infects {random_person._id}\n')
+            outfile.writelines("{} didn't infect {} because vaccinated\n".format(person._id, random_person._id))
         elif (not random_person_sick and random_person_vacc and not did_infect):
-            outfile.writelines(f"{person._id} didn't infect {random_person._id} because vaccinated \n")
-        #log other edge cases that might have been missed
-        else:
-            outfile.write(f"Edge case uncaught: random person id {random_person._id}, sick? {random_person_sick} vacc? {random_person_vacc} infect? {did_infect} \n")
+            outfile.writelines("{} didn't infect {} because vaccinated\n".format(person._id, random_person._id))
         
         outfile.close()
 
@@ -67,9 +66,9 @@ class Logger(object):
         '''
         outfile = open(self.file_name, "a")
         if(did_die_from_infection):
-            outfile.write(f"{person._id} died from infection\n")
+            outfile.write('{} died from infection\n'.format(person._id))
         elif(not did_die_from_infection):
-            outfile.write(f"{person._id} survived infection.\n")
+            outfile.write("{} survived infection.\n".format(person._id))
         
         outfile.close()
 
@@ -89,18 +88,17 @@ class Logger(object):
         '''
         outfile = open(self.file_name, "a")
         outfile.write(
-        f'''
-            New infections (including infections resulting in deaths): {current_infected} \n 
-            Total infection in population (including initialy infected, if applicable): {total_infected} \n
-            New deaths: {new_death} \n
-            Total deaths: {total_dead} \n
-            POPULATION STATS \n
-            Number of living: {pop_size - total_dead}\n
-            Total number of vaccinated: {total_vaccinated}** \n
-            ** We opted not to test mortality of initially, per FAQ question-2 answer.)\n
-            Time step {time_step_number} ended, beginning {time_step_number + 1}... \n
         '''
-            )
+            New infections (including infections resulting in deaths): {}\n 
+            Total infection in population (including initialy infected, if applicable): {}\n
+            New deaths: {}\n
+            Total deaths: {}\n
+            POPULATION STATS \n
+            Number of living: {}\n
+            Total number of vaccinated: {}**\n
+            ** We opted not to test mortality of initially, per FAQ question-2 answer.)\n
+            Time step {} ended, beginning {}...\n
+        '''.format(current_infected, total_infected, new_death, total_dead, pop_size - total_dead, total_vaccinated, time_step_number, time_step_number + 1))
         outfile.close()
 
     #helper function to end log file:
@@ -110,31 +108,22 @@ class Logger(object):
         Args:
             person1 (person): The initial infected person
             random_person (person): The person that person1 interacts with.
-
-
-
         '''
         outfile = open(self.file_name, "a")
         outfile.write(
-        f'''
+        '''
             ---------------------------------END OF SIMULATION---------------------------------
             Simulation ended because all members of the population (except for initialy infected**) are either vaccinated or dead\n 
-            {time_step_number * 100} interactions happened in the simulation.
+            {} interactions happened in the simulation.
             RESULTS:\n
-            Initial infected: {initial_infected}\n
-            Total deaths: {total_dead} \n
-            Total living (incl. initial infected): {pop_size - total_dead} \n
-            Total persons that have been infected (excl. initialy infected): {total_infected} \n
-            Total number of vaccinated and alive (incl. survivors and initially vaccinated): {total_vaccinated}** \n
-            Number of interactions resulting in vaccination and survival: {total_vaccinated - initial_vaccinated}\n
-            Number of interactions resulting in death: {total_dead}\n
+            Initial infected: {}\n
+            Total deaths: {} \n
+            Total living (incl. initial infected): {} \n
+            Total persons that have been infected (excl. initialy infected): {} \n
+            Total number of vaccinated and alive (incl. survivors and initially vaccinated): {}** \n
+            Number of interactions resulting in vaccination and survival: {}\n
+            Number of interactions resulting in death: {}\n
             ** We opted not to test mortality of initially, per FAQ question-2 answer.)\n
             ------------------------------------------------------------------------------------
-        '''
-            )
+        '''.format(time_step_number * 100, initial_infected, total_dead, pop_size - total_dead, total_infected, total_vaccinated, total_vaccinated - initial_vaccinated, total_dead))
         outfile.close()
-
-if __name__ == "__main__":
-    #Use for testing      
-    log_test = Logger('example.txt')
-    log_test.write_metadata(1000, 0.20, 'Ebola', 0.2, 0.3, 10)
