@@ -1,7 +1,16 @@
 1 - What were the inputs you gave the simulation? (Population size, percent vaccinated, virus name, mortality rate, reproductive rate)
 
+I ran the simulation with inputs 'ebola', '0.25', '0.70', '100000', '0.90', '10'. (More precisely, I entered 'python3 simulation.py ebola 0.25 0.70 100000 0.90 10' in the terminal)
+
 2 - What percentage of the population became infected at some point before the virus burned out?
+
+Out of a 100 000 individuals, ~10% (9989 persons) of the population were infected before the virus eventually burned out and simulation ended
 
 3 - What percentage of the population died from the virus?
 
+6.92% of the population died from the virus 
+
 4 - Out of all interactions sick individuals had during the entire simulation, how many times, in total, did a vaccination save someone from potentially becoming infected?
+
+from over 1 014 400 interations, 6921 interaction resulted in death while 3069 interaction resulted in survival (and immunization). 
+This would mean that the remaining 1 004 410 interactions where interaction not leading to infection because the persons were already vaccinated.
